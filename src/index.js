@@ -14,9 +14,9 @@ const port = process.env.PORT || 3000
 //     }
 // })
 
-app.use((req, res, next) => {
-    res.status(503).send('Server under maintenance, please come back later. Thank you')
-})
+// app.use((req, res, next) => {
+//     res.status(503).send('Server under maintenance, please come back later. Thank you')
+// })
 
 app.use(express.json())
 app.use(userRouter)
@@ -25,6 +25,17 @@ app.use(taskRouter)
 app.listen(port, () => {
     console.log('Server is up on port ' + port)
 })
+
+// const pet = {
+//     name: 'hal'
+// }
+
+// pet.toJSON = function () {
+//     console.log(this)
+//     return this
+// }
+
+// console.log(JSON.stringify(pet))
 
 // const bcrypt = require('bcryptjs')
 
@@ -39,15 +50,15 @@ app.listen(port, () => {
 //     console.log(isMatch)
 // }
 
-const jwt = require('jsonwebtoken')
+// const jwt = require('jsonwebtoken')
 
-const myFunction = async () => {
-    const token = jwt.sign({ _id: 'abc123' }, 'thisismysecret', { expiresIn: '7 days' })
-    console.log(token)
+// const myFunction = async () => {
+//     const token = jwt.sign({ _id: 'abc123' }, 'thisismysecret', { expiresIn: '7 days' })
+//     console.log(token)
 
-    const data = jwt.verify(token, 'thisismysecret')
-    console.log(data)
-}
+//     const data = jwt.verify(token, 'thisismysecret')
+//     console.log(data)
+// }
 
-myFunction()
+// myFunction()
 
