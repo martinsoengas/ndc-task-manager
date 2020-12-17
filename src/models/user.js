@@ -49,6 +49,12 @@ const userSchema = new mongoose.Schema({
     }]
 })
 
+userSchema.virtual('tasks', {
+    ref: 'Task',
+    localField: '_id',
+    foreignField: 'owner'
+})
+
 const jwt = require('jsonwebtoken')
 
 userSchema.methods.toJSON = function () {
@@ -59,7 +65,6 @@ userSchema.methods.toJSON = function () {
     delete userObject.tokens
 
     return userObject
-
 }
 
 userSchema.methods.generateAuthToken = async function () {
@@ -95,7 +100,6 @@ userSchema.pre('save', async function (next) {
     if (user.isModified('password')) {
         user.password = await bcrypt.hash(user.password, 8)
     }
-    console.log('Just before saving!')
 
     next()
 })
