@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
-const { JsonWebTokenError } = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 const Task = require('./task')
 
 const userSchema = new mongoose.Schema({
@@ -60,8 +60,6 @@ userSchema.virtual('tasks', {
     localField: '_id',
     foreignField: 'owner'
 })
-
-const jwt = require('jsonwebtoken')
 
 userSchema.methods.toJSON = function () {
     const user = this
